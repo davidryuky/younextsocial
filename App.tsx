@@ -5,6 +5,8 @@ import { OrderSection } from './components/OrderSection';
 import { AdvantagesSection } from './components/AdvantagesSection';
 import { FaqSection } from './components/FaqSection';
 import { SocialIconsSection } from './components/SocialIconsSection';
+import { TestimonialsSection } from './components/TestimonialsSection';
+import { ContactSection } from './components/ContactSection';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { Footer } from './components/Footer';
 
@@ -18,6 +20,8 @@ const App: React.FC = () => {
         <AdvantagesSection />
         <FaqSection />
         <SocialIconsSection />
+        <TestimonialsSection />
+        <ContactSection />
       </main>
       <Footer />
       <WhatsAppButton />
