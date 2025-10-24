@@ -26,7 +26,10 @@ const TestimonialCard: React.FC<{ testimonial: TestimonialData }> = ({ testimoni
       </div>
       <div>
         <h4 className="font-bold text-white">{testimonial.name}</h4>
-        <p className="text-sm text-brand-lilac">{testimonial.handle}</p>
+        <p className="text-sm text-brand-lilac">
+          <span>{testimonial.handle.substring(0, 6)}</span>
+          <span className="blur-sm">{testimonial.handle.substring(6)}</span>
+        </p>
       </div>
     </div>
   </div>
