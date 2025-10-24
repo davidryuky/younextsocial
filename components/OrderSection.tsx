@@ -46,12 +46,19 @@ export const OrderSection: React.FC = () => {
                     {/* 1. Social Network Selector */}
                     <div className="mb-6">
                         <label className="block text-lg font-semibold mb-3 text-slate-200">1. Selecione a Rede Social</label>
-                        {/* FIX: Replaced scroll with a wrapping flex container for better responsiveness */}
-                        <div className="flex flex-wrap justify-center gap-4 py-4">
+                        <div className="flex flex-wrap justify-center items-end gap-4 py-4">
                             {socialNetworks.map(({ name, icon: Icon }) => (
-                                <button key={name} onClick={() => setSelectedSocial(name)} className={`flex-shrink-0 p-4 rounded-full border-2 transition-all duration-300 ${selectedSocial === name ? 'bg-brand-purple border-brand-lilac scale-110' : 'bg-brand-dark-200 border-purple-900/50 hover:border-brand-lilac'}`}>
-                                    <Icon style={iconStyle} className={selectedSocial === name ? 'text-white' : 'text-slate-300'} />
-                                </button>
+                                <div key={name} className="flex flex-col items-center w-24">
+                                    <button
+                                        onClick={() => setSelectedSocial(name)}
+                                        className={`p-4 rounded-full border-2 transition-all duration-300 ${selectedSocial === name ? 'bg-brand-purple border-brand-lilac scale-110' : 'bg-brand-dark-200 border-purple-900/50 hover:border-brand-lilac'}`}
+                                    >
+                                        <Icon style={iconStyle} className={selectedSocial === name ? 'text-white' : 'text-slate-300'} />
+                                    </button>
+                                    <span className={`mt-2 text-xs font-semibold h-4 transition-opacity duration-300 ${selectedSocial === name ? 'opacity-100 text-brand-lilac' : 'opacity-0'}`}>
+                                        {name}
+                                    </span>
+                                </div>
                             ))}
                         </div>
                     </div>
