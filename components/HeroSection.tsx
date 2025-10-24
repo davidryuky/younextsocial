@@ -23,7 +23,7 @@ export const HeroSection: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/50"></div>
       
       <div className="relative z-10 p-6">
-        <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-brand-lilac via-white to-brand-lilac animate-pulse">
+        <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-brand-lilac via-white to-brand-lilac animate-pulse py-2">
           Aumente seus seguidores
         </h2>
         <p className="text-4xl md:text-6xl font-extrabold leading-tight mb-8">

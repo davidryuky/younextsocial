@@ -9,6 +9,7 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactSection } from './components/ContactSection';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { Footer } from './components/Footer';
+import { AnimatedSection } from './components/AnimatedSection';
 
 const App: React.FC = () => {
   return (
@@ -17,11 +18,21 @@ const App: React.FC = () => {
       <main>
         <HeroSection />
         <OrderSection />
-        <AdvantagesSection />
-        <FaqSection />
-        <SocialIconsSection />
-        <TestimonialsSection />
-        <ContactSection />
+        <AnimatedSection>
+          <AdvantagesSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <FaqSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <SocialIconsSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <TestimonialsSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <ContactSection />
+        </AnimatedSection>
       </main>
       <Footer />
       <WhatsAppButton />
