@@ -35,10 +35,18 @@ const services: { name: ServiceType; icon: React.FC<any> }[] = [
 ];
 
 export const OrderSection: React.FC = () => {
+    const MIN_QUANTITY = 100;
+    const MAX_QUANTITY = 50000;
+    const STEP = 100;
+
     const [selectedSocial, setSelectedSocial] = useState('Instagram');
     const [service, setService] = useState<ServiceType>('Seguidores');
     const [quantity, setQuantity] = useState(1000);
     const [link, setLink] = useState('');
+    
+    const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuantity(parseInt(e.target.value, 10));
+    };
 
     const handleBuyClick = () => {
         const message = `Olá! Gostaria de fazer um pedido na YouNextSocial:\n\n- Rede Social: *${selectedSocial}*\n- Serviço: *${service}*\n- Quantidade: *${quantity}*\n- Link: ${link}`;
@@ -109,11 +117,23 @@ export const OrderSection: React.FC = () => {
                     {/* 3. Quantity Slider */}
                     <div className="mb-6">
                         <label htmlFor="quantity" className="block text-lg font-semibold mb-3 text-slate-200">3. Defina a Quantidade</label>
-                        <div className="flex items-center space-x-4">
-                            <input id="quantity" type="range" min="100" max="10000" step="100" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value, 10))} className="w-full h-2 rounded-lg appearance-none cursor-pointer custom-slider" />
-                            <span className="bg-brand-dark-200 text-brand-lilac font-bold py-2 px-4 rounded-lg min-w-[80px] text-center border border-purple-900/50">{quantity}</span>
+                         <div className="flex items-center gap-4 pt-2">
+                             <input
+                                id="quantity"
+                                type="range"
+                                min={MIN_QUANTITY}
+                                max={MAX_QUANTITY}
+                                step={STEP}
+                                value={quantity}
+                                onChange={handleQuantityChange}
+                                className="w-full h-2 bg-purple-900/50 rounded-lg appearance-none cursor-pointer custom-slider focus:outline-none"
+                            />
+                            <span className="bg-brand-dark-200 border-2 border-purple-900/50 rounded-lg text-white font-bold py-2 px-4 min-w-[80px] text-center">
+                                {quantity}
+                            </span>
                         </div>
                     </div>
+
 
                     {/* 4. Link Input */}
                     <div className="mb-8">
