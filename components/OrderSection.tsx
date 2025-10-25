@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
-import { Instagram, Facebook, Twitter, Users, Heart, Eye } from 'lucide-react';
+// FIX: Removed 'Spotify' from lucide-react import as it does not exist in the library.
+import { Instagram, Facebook, Twitter, Youtube, Users, Heart, Eye } from 'lucide-react';
 
 // Custom TikTok Icon
 const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M9 12a4 4 0 1 0 4 4v-12a5 5 0 0 0 5 5" /></svg>
 );
 
+// ADD: Created a custom Spotify icon component to replace the non-existent lucide-react icon.
+const SpotifyIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10z"></path>
+        <path d="M6 15.25c2.1-1.05 4.85-1.3 7.85-0.75"></path>
+        <path d="M5.5 12.5c2.55-1.15 5.7-1.4 8.9-0.8"></path>
+        <path d="M5 9.5c3.35-1.25 7.1-1.35 10.9-0.4"></path>
+    </svg>
+);
+
+
 const socialNetworks = [
     { name: 'Instagram', icon: Instagram },
     { name: 'TikTok', icon: TiktokIcon },
     { name: 'Facebook', icon: Facebook },
     { name: 'Twitter', icon: Twitter },
+    { name: 'Youtube', icon: Youtube },
+    // FIX: Replaced the imported 'Spotify' with the custom 'SpotifyIcon' component.
+    { name: 'Spotify', icon: SpotifyIcon },
 ];
 
 type ServiceType = 'Seguidores' | 'Curtidas' | 'Visualizações';
