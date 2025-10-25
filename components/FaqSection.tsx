@@ -1,17 +1,16 @@
-
 import React, { useState } from 'react';
 
 const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-purple-900/50 py-6">
+    <div className="border-b border-purple-900/50 py-6 last:border-b-0">
       <button
-        className="w-full flex justify-between items-center text-left text-lg md:text-xl font-semibold text-white focus:outline-none"
+        className="w-full flex justify-between items-center text-left text-lg md:text-xl font-semibold text-white focus:outline-none group"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <span>{question}</span>
+        <span className={`transition-colors duration-300 ${isOpen ? 'text-brand-lilac' : 'group-hover:text-slate-200'}`}>{question}</span>
         <svg
           className={`w-6 h-6 transform transition-transform duration-300 text-brand-lilac ${isOpen ? 'rotate-180' : 'rotate-0'}`}
           fill="none"
@@ -68,7 +67,7 @@ export const FaqSection: React.FC = () => {
             Esclareça suas principais dúvidas sobre como podemos impulsionar seu sucesso.
           </p>
         </div>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto bg-brand-dark-200 p-4 md:p-8 rounded-2xl border border-purple-900/50">
           {faqs.map((faq, index) => (
             <FaqItem key={index} question={faq.question} answer={faq.answer} />
           ))}

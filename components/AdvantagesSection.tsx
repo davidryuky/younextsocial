@@ -2,14 +2,17 @@ import React from 'react';
 
 // FIX: Replaced JSX.Element with React.ReactElement to resolve the "Cannot find namespace 'JSX'" error.
 const AdvantageCard: React.FC<{ icon: React.ReactElement; title: string; description: string }> = ({ icon, title, description }) => (
-  <div className="bg-brand-dark-200 p-6 rounded-xl border border-purple-900/50 transition-all duration-300 hover:border-brand-lilac hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2">
-    <div className="flex items-center mb-4">
-      <div className="bg-brand-purple p-3 rounded-full mr-4 text-white">
-        {icon}
+  <div className="relative bg-brand-dark-200 p-6 rounded-xl border border-purple-900/50 transition-all duration-300 hover:border-brand-lilac hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2 group overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+    <div className="relative z-10">
+      <div className="flex items-center mb-4">
+        <div className="bg-gradient-to-br from-brand-purple to-purple-600 p-3 rounded-full mr-4 text-white shadow-lg shadow-purple-500/20">
+          {icon}
+        </div>
+        <h3 className="text-xl font-bold text-white">{title}</h3>
       </div>
-      <h3 className="text-xl font-bold text-white">{title}</h3>
+      <p className="text-slate-300">{description}</p>
     </div>
-    <p className="text-slate-300">{description}</p>
   </div>
 );
 
@@ -48,22 +51,23 @@ export const AdvantagesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-brand-dark">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white">
-            Por que escolher a <span className="text-brand-lilac">YouNextSocial</span>?
-          </h2>
-          <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
-            Oferecemos mais do que números. Entregamos a base para o seu sucesso digital em plataformas como Instagram, TikTok, YouTube, Facebook, Twitter e LinkedIn.
-          </p>
+    <section className="py-20 md:py-32 bg-brand-dark relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[50%] h-[50%] bg-brand-purple/10 rounded-full blur-3xl -z-0"></div>
+        <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white">
+                    Por que escolher a <span className="text-brand-lilac">YouNextSocial</span>?
+                </h2>
+                <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
+                    Oferecemos mais do que números. Entregamos a base para o seu sucesso digital em plataformas como Instagram, TikTok, YouTube, Facebook, Twitter e LinkedIn.
+                </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {advantages.map((adv) => (
+                    <AdvantageCard key={adv.title} {...adv} />
+                ))}
+            </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {advantages.map((adv) => (
-            <AdvantageCard key={adv.title} {...adv} />
-          ))}
-        </div>
-      </div>
     </section>
   );
 };

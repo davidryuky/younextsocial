@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// FIX: Removed 'Spotify' from lucide-react import as it does not exist in the library.
 import { Instagram, Facebook, Twitter, Youtube, Users, Heart, Eye } from 'lucide-react';
 
 // Custom TikTok Icon
@@ -7,7 +6,7 @@ const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M9 12a4 4 0 1 0 4 4v-12a5 5 0 0 0 5 5" /></svg>
 );
 
-// ADD: Created a custom Spotify icon component to replace the non-existent lucide-react icon.
+// Custom Spotify icon component
 const SpotifyIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10z"></path>
@@ -24,7 +23,6 @@ const socialNetworks = [
     { name: 'Facebook', icon: Facebook },
     { name: 'Twitter', icon: Twitter },
     { name: 'Youtube', icon: Youtube },
-    // FIX: Replaced the imported 'Spotify' with the custom 'SpotifyIcon' component.
     { name: 'Spotify', icon: SpotifyIcon },
 ];
 
@@ -66,20 +64,20 @@ export const OrderSection: React.FC = () => {
                     <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">É rápido, fácil e 100% seguro.</p>
                 </div>
 
-                <div className="max-w-3xl mx-auto bg-brand-dark p-8 rounded-2xl shadow-2xl shadow-purple-500/10 border border-purple-900/50">
+                <div className="max-w-3xl mx-auto bg-brand-dark p-6 md:p-8 rounded-2xl shadow-2xl shadow-purple-500/10 border border-purple-900/50">
                     {/* 1. Social Network Selector */}
                     <div className="mb-6">
                         <label className="block text-lg font-semibold mb-3 text-slate-200">1. Selecione a Rede Social</label>
-                        <div className="flex flex-wrap justify-center items-end gap-4 py-4">
+                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 py-4">
                             {socialNetworks.map(({ name, icon: Icon }) => (
-                                <div key={name} className="flex flex-col items-center w-24">
+                                <div key={name} className="flex flex-col items-center">
                                     <button
                                         onClick={() => setSelectedSocial(name)}
-                                        className={`p-4 rounded-full border-2 transition-all duration-300 ${selectedSocial === name ? 'bg-brand-purple border-brand-lilac scale-110' : 'bg-brand-dark-200 border-purple-900/50 hover:border-brand-lilac'}`}
+                                        className={`p-4 rounded-full border-2 transition-all duration-300 transform-gpu ${selectedSocial === name ? 'bg-brand-purple border-brand-lilac scale-110 shadow-lg shadow-purple-500/30' : 'bg-brand-dark-200 border-purple-900/50 hover:border-brand-lilac hover:scale-105'}`}
                                     >
                                         <Icon style={iconStyle} className={selectedSocial === name ? 'text-white' : 'text-slate-300'} />
                                     </button>
-                                    <span className={`mt-2 text-xs font-semibold h-4 transition-opacity duration-300 ${selectedSocial === name ? 'opacity-100 text-brand-lilac' : 'opacity-0'}`}>
+                                    <span className={`mt-2 text-xs font-semibold h-4 transition-all duration-300 ${selectedSocial === name ? 'opacity-100 text-brand-lilac' : 'opacity-50'}`}>
                                         {name}
                                     </span>
                                 </div>
@@ -95,9 +93,9 @@ export const OrderSection: React.FC = () => {
                                 <button
                                     key={name}
                                     onClick={() => setService(name)}
-                                    className={`flex items-center justify-center w-full p-3 rounded-lg border-2 transition-all duration-300 font-bold ${
+                                    className={`flex items-center justify-center w-full p-3 rounded-lg border-2 transition-all duration-300 font-bold transform-gpu hover:scale-105 ${
                                         service === name
-                                            ? 'bg-brand-purple border-brand-lilac text-white'
+                                            ? 'bg-brand-purple border-brand-lilac text-white shadow-md shadow-purple-500/20'
                                             : 'bg-brand-dark-200 border-purple-900/50 text-slate-300 hover:border-brand-lilac'
                                     }`}
                                 >
@@ -112,20 +110,20 @@ export const OrderSection: React.FC = () => {
                     <div className="mb-6">
                         <label htmlFor="quantity" className="block text-lg font-semibold mb-3 text-slate-200">3. Defina a Quantidade</label>
                         <div className="flex items-center space-x-4">
-                            <input id="quantity" type="range" min="100" max="10000" step="100" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value, 10))} className="w-full h-2 bg-purple-900/50 rounded-lg appearance-none cursor-pointer accent-brand-lilac" />
-                            <span className="bg-brand-dark-200 text-brand-lilac font-bold py-2 px-4 rounded-lg min-w-[80px] text-center">{quantity}</span>
+                            <input id="quantity" type="range" min="100" max="10000" step="100" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value, 10))} className="w-full h-2 rounded-lg appearance-none cursor-pointer custom-slider" />
+                            <span className="bg-brand-dark-200 text-brand-lilac font-bold py-2 px-4 rounded-lg min-w-[80px] text-center border border-purple-900/50">{quantity}</span>
                         </div>
                     </div>
 
                     {/* 4. Link Input */}
                     <div className="mb-8">
                         <label htmlFor="link" className="block text-lg font-semibold mb-3 text-slate-200">4. Link do Perfil ou Publicação</label>
-                        <input id="link" type="text" value={link} onChange={(e) => setLink(e.target.value)} placeholder={`https://...`} className="w-full bg-brand-dark-200 border-2 border-purple-900/50 rounded-lg p-3 focus:outline-none focus:border-brand-lilac transition-colors" />
+                        <input id="link" type="text" value={link} onChange={(e) => setLink(e.target.value)} placeholder={`https://...`} className="w-full bg-brand-dark-200 border-2 border-purple-900/50 rounded-lg p-3 focus:outline-none focus:border-brand-lilac transition-colors duration-300" />
                     </div>
 
                     {/* 5. Buy Button */}
                     <div className="text-center">
-                        <button onClick={handleBuyClick} className="w-full md:w-auto bg-brand-purple hover:bg-purple-700 text-white font-bold py-4 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/30">
+                        <button onClick={handleBuyClick} className="w-full md:w-auto bg-gradient-to-r from-brand-purple to-purple-600 hover:from-purple-600 hover:to-brand-purple text-white font-bold py-4 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/40">
                             Comprar {service}
                         </button>
 
